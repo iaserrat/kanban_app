@@ -1,6 +1,10 @@
 Kanban App
 ==========
 
+Small Kanban App using React, webpack & Flux
+
+(From SurviveJS™)
+
 License
 ============
 The MIT License
