@@ -16,6 +16,9 @@ export default class App extends React.Component {
     }
   }
 
+  /**
+   * Property initializers [ES7]
+   */
   addNote = () => {
     this.setState({
       notes: this.state.notes.concat([{
@@ -25,12 +28,28 @@ export default class App extends React.Component {
     });
   }
 
+  editNote = (id, task) => {
+    const notes = this.state.notes.map((note) => {
+      if (note.id === id) {
+        note.task = task;
+      }
+      return note;
+    });
+    this.setState({notes});
+  }
+
+  deleteNote = (id) => {
+    this.setState({
+      notes: this.state.notes.filter((note) => note.id !== id)
+    });
+  }
+
   render() {
     const notes = this.state.notes;
     return (
       <div>
         <button className="add-note" onClick={this.addNote}>+</button>
-        <Notes notes={notes} />
+        <Notes notes={notes} onEdit={this.editNote} onDelete={this.deleteNote}/>
       </div>
     );
   }
